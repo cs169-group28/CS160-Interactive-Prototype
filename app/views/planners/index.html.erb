@@ -1,0 +1,21 @@
+<h1>Listing planners</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @planners.each do |planner| %>
+  <tr>
+    <td><%= link_to 'Show', planner %></td>
+    <td><%= link_to 'Edit', edit_planner_path(planner) %></td>
+    <td><%= link_to 'Destroy', planner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Planner', new_planner_path %>
