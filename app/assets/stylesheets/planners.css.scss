@@ -2,14 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
+	margin: 0px;
 	background-color: #F2F7F2;
 }
 
 #event_list{
-	width: 100%;
+	width: 90%;
 	float: left;
-	margin: 50px;
-
+	padding-left: 50px;
+	padding-top: 50px;
 }
 #profile_area{
 	margin-left: 30px;
@@ -44,14 +45,12 @@ body {
 	padding-bottom: 30px;
 	padding-left: 230px;
 	z-index: -1;
-	width: 100%;
+	width: 70%;
 	background-color: #CDE1C5;
 	color: #253C5C;
 }
 
 #top_bar {
-	margin-top: -10px;
-	margin-left: -10px;
 	background-color: #253C5C;
 	height: 3.0em;
 	width: 100%;
