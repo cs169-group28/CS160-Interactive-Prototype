@@ -2,8 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
-	margin: 0px;
-	padding: 0px;
 	background-color: #F2F7F2;
 }
 
@@ -52,6 +50,8 @@ body {
 }
 
 #top_bar {
+	margin-top: -10px;
+	margin-left: -10px;
 	background-color: #253C5C;
 	height: 3.0em;
 	width: 100%;
