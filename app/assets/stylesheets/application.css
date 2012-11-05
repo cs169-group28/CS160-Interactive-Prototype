@@ -11,3 +11,152 @@
  *= require_self
  *= require_tree .
  */
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, sans-serif;
+}
+
+.web_dialog_overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: #000000;
+	opacity: .15;
+/*	filter: alpha(opacity=15);
+	-moz-opacity: .15;*/
+	z-index: 101;
+	display: none;
+}
+.web_dialog {
+	display: none;
+	padding: 0 10px 10px;
+	position: fixed;
+	width: 500px;
+	top: 20%;
+	left: 30%;
+	background-color: #ffffff;
+	border: 2px solid #1d7373;
+	z-index: 102;
+}
+
+.tabs li {
+	list-style:none;
+	display:inline;
+}
+
+.tabs a {
+	padding:5px 10px;
+/*	display:inline-block;*/
+	background:#33cccc;
+	color:#1d7373;
+	text-decoration:none;
+}
+
+.tabs a.active {
+	background:#1d7373;
+	color:#33cccc;
+}
+
+#tab3 {
+	font-family: Georgia, serif;
+}
+
+#bar {
+	width: 0;
+	height: 0;
+	border-top: 1px;
+	border-bottom: 1px;
+	border-right: 500px;
+	border-style: solid;
+	border-color: #1d7373;
+	margin-top: -12.5px;
+}
+
+#tab1, #tab2, #tab3 {
+	background:#ffffff;
+	padding: 10px;
+}
+
+#addob, #addre, #addbi, #addbb, #addbs{
+	padding: 5px;
+	box-shadow: 1px 1px 5px 1px;
+	color: #777;
+	margin: 10px;
+	font-family: Helvetica, sans-serif;
+}
+
+#addbi {
+	width: 170px;
+	margin-right: 90px;
+}
+
+#addbb {
+	margin-right: 35px;
+}
+
+#addbb, #addbs {
+	width: 40px;
+}
+
+#tab3 form {
+	clear: right;
+}
+
+#tab3 form input{
+	display: inline;
+}
+
+#budget-item-wrapper {
+	margin-top: 40px;
+}
+
+#budget-wrapper p, #spent-wrapper p {
+	display: inline;
+	text-decoration: underline;
+}
+
+#budget-wrapper, #spent-wrapper {
+	width: 60px;
+	padding: 20px;
+	display: inline;
+	float: right;
+}
+
+#budget-item-wrapper span, #budget-wrapper span, #spent-wrapper span{
+	display: block;
+}
+
+.amts {
+	display: inline;
+	margin-left: 240px;
+}
+
+.amts span {
+	padding: 25px;
+	width: 60px;
+	display: inline;
+	text-decoration: underline;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+form input {
+	display: block;
+	font-size: 1em;
+}
+
+#btnClose, #btnSubmit, #btnClose2, #btnSubmit2 {
+	float: right;
+	padding: 5px;
+	margin: 5px;
+}
