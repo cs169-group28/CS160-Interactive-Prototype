@@ -1,4 +1,5 @@
-<h1>Listing tasks</h1>
+<h1>Listing tasks for <%= @event.name %> </h1>
+
 
 <table>
   <tr>
@@ -19,4 +20,10 @@
 
 <br />
 
-<%= link_to 'New Task', new_event_task_path %>
+<div id="overlay" class="web_dialog_overlay"></div>
+  
+  <div id="dialog" class="web_dialog">
+    <div></div>
+  </div>
+
+<%= link_to 'New Task', new_event_task_path, :remote => true %>

@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    @event = Event.find(params[:event_id])
     @tasks = Task.all
 
     respond_to do |format|
