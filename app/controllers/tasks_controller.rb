@@ -14,6 +14,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @event = Event.find(params[:event_id])
     @task = Task.find(params[:id])
 
     respond_to do |format|

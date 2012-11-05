@@ -138,7 +138,7 @@ $(document).ready(function () {
 		HideDialog();
 		e.preventDefault();
 	});
-	$("#btn2").click(function(e) {
+	$(".btn2").click(function(e) {
 		ShowDialog2();
 		e.preventDefault();
 	});
