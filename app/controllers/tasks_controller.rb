@@ -24,7 +24,8 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    @task = Task.new
+    @event = Event.find(params[:event_id])
+    @task = @event.tasks.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,6 +35,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    @event = Event.find(params[:event_id])
     @task = Task.find(params[:id])
   end
 
@@ -44,7 +46,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to event_task_url(@task.event_id, @task.id), notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
@@ -60,7 +62,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to event_task_path, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

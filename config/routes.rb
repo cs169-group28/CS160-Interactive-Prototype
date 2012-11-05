@@ -1,11 +1,9 @@
 CS160Project::Application.routes.draw do
   resources :objectives
 
-  resources :tasks
-
-  resources :events
-
-  resources :planners
+  resources :events do
+    resources :tasks
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

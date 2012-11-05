@@ -24,15 +24,6 @@ ActiveRecord::Schema.define(:version => 20121105060220) do
   create_table "objectives", :force => true do |t|
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.integer  "owner"
-    t.integer  "task_id"
-    t.string   "name"
-    t.text     "description"
-  end
-
-  create_table "objectives", :force => true do |t|
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
     t.text     "description"
     t.integer  "owner"
     t.string   "name"
