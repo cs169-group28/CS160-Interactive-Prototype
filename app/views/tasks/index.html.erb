@@ -1,5 +1,13 @@
-<h1>Listing tasks for <%= @event.name %> </h1>
+<div id="top_bar">
+  <div id="back_to_events">
+    <- Back To Events
+  </div>
+</div>
 
+<div id="container">
+  <div id="event_name">
+    <h1>Listing tasks for <%= @event.name %> </h1>
+  </div>
 
 <table>
   <tr>
@@ -27,3 +35,5 @@
   </div>
 
 <%= link_to 'New Task', new_event_task_path, :remote => true %>
+
+</div>
