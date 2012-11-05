@@ -18,10 +18,10 @@
 
 <% @tasks.each do |task| %>
   <tr>
+    <td><div id="task_name"><%= task.name %></div></td>
     <td><%= link_to 'Show', event_task_path(task.event_id, task), :class => 'btn2' %></td>
     <td><%= link_to 'Edit', edit_event_task_path(task.event_id, task) %></td>
     <td><%= link_to 'Destroy', event_task_path(task.event_id, task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td><%= task.name %></td>
   </tr>
 <% end %>
 </table>
