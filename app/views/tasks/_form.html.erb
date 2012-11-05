@@ -10,21 +10,9 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="field" style="visibility: hidden;">
     <%= f.label :event_id %><br />
     <%= f.text_field :event_id %>
-  </div>
-  <div class="field">
-    <%= f.label :b_flag %><br />
-    <%= f.text_field :b_flag %>
-  </div>
-  <div class="field">
-    <%= f.label :budget %><br />
-    <%= f.text_field :budget %>
-  </div>
-  <div class="field">
-    <%= f.label :owner %><br />
-    <%= f.text_field :owner %>
   </div>
   <div class="field">
     <%= f.label :name %><br />
@@ -32,11 +20,7 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :completed %><br />
-    <%= f.text_field :completed %>
+    <%= f.text_area :description, :size => "60x12" %>
   </div>
   <div class="actions">
     <%= f.submit %>
