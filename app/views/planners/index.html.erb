@@ -1,7 +1,15 @@
-<h1>Listing planners</h1>
+<div id="top_bar"></div>
+
+  <div id="profile_area">
+    <div id="profile_photo"></div>
+    <div id="profile_name" class="shadow">John Smith</div>
+</div>
+<div id="event_list">
+<h1>Events</h1>
 
 <table>
   <tr>
+    <th>Event Name</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +17,7 @@
 
 <% @planners.each do |planner| %>
   <tr>
+    <td><%= planner.name %></td>
     <td><%= link_to 'Show', planner %></td>
     <td><%= link_to 'Edit', edit_planner_path(planner) %></td>
     <td><%= link_to 'Destroy', planner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -19,3 +28,4 @@
 <br />
 
 <%= link_to 'New Planner', new_planner_path %>
+</div>

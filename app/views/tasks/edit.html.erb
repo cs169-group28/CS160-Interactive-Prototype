@@ -1,0 +1,6 @@
+<h1>Editing task</h1>
+<%= form_for([@event, @task], :url => event_task_path(@task.event_id, @task.id)) do |f| %>
+<%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+<%= link_to 'Show', event_task_path(@task.event_id, @task) %> |
+<%= link_to 'Back', event_tasks_path %>
