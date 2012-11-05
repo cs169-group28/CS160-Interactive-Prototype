@@ -12,9 +12,11 @@
   <% end %>
 
    <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %><div style="color:#ff0000; display:inline">*</div><br />
     <%= f.text_field :name %>
   </div>
+
+  <div style="color:#ff0000">*required</div>
 
   <div class="actions">
     <%= f.submit %>
