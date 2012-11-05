@@ -12,9 +12,27 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= modals
 //= require_tree .
 
 $(document).ready(function () {
+	var $modal = $('#dialog2'),
+
+    	$modal_container = $('#overlay');
+
+  $('a[data-remote]').live('ajax:beforeSend', function(e, xhr, settings){
+    xhr.setRequestHeader('accept', '*/*;q=0.5, text/html, ' + settings.accepts.html);
+  });
+
+  $('a[data-remote]').live('ajax:success', function(xhr, data, status){
+    $modal
+      .html(data)
+      .css('top', $(window).scrollTop() + 40)
+      .show();
+    $modal_container.show();
+  });
+
+ 
 	$("#addob").keypress(function(e){
 		if (e.which == 13) {
 			e.preventDefault();
