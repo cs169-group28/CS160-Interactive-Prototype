@@ -11,6 +11,7 @@
 
 <table>
   <tr>
+    <th>Name</th>
     <th></th>
     <th></th>
     <th></th>
@@ -18,21 +19,67 @@
 
 <% @tasks.each do |task| %>
   <tr>
-    <td><%= link_to 'Show', event_task_path(task.event_id, task), :remote => true %></td>
+    <td><%= task.name %></td>
+    <td><%= link_to 'Show', event_task_path(task.event_id, task), :class => 'btn2' %></td>
     <td><%= link_to 'Edit', edit_event_task_path(task.event_id, task) %></td>
     <td><%= link_to 'Destroy', event_task_path(task.event_id, task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td><%= task.name %></td>
   </tr>
 <% end %>
 </table>
 <br />
 
 <div id="overlay" class="web_dialog_overlay"></div>
-  
+<div id="dialog2" class="web_dialog">
+    <h3><%= task.name %></h3>
+    <ul class="tabs">
+      <li><a href="#tab1">Objectives</a></li>
+      <li><a href="#tab2">Resources</a></li>
+      <li><a href="#tab3">Budget</a></li>
+    </ul>
+    <div id="bar"></div>
+    <div id="tab1">
+      <ul id="objectives">
+      </ul>
+      <form> 
+        <input id="addob" type="text" placeholder=" + add objective"/>
+      </form>
+    </div>
+    <div id="tab2">
+      <ul id="resources">
+      </ul>
+      <form>
+        <input id="addre" type="text" placeholder=" + add resource"/>
+      </form>
+    </div>
+    <div id="tab3">
+      <div id="spent-wrapper"> 
+        <p>Spent</p>
+      </div>
+      <div id="budget-wrapper">
+        <p>Budget</p>
+      </div>
+      <div id="budget-item-wrapper"> 
+      </div>
+      <br />
+      <form>
+        <input id="addbi" type="text" placeholder=" + add item"/>
+        <input id="addbb" type="number" value="0"/>
+        <input id="addbs" type="number" value="0"/>
+      </form>
+      Total:
+      <div class="amts">
+        <span id="totalbudget">____</span> 
+        <span id="totalspent">____</span>
+      </div>
+    </div>
+    <button id="btnSubmit">Submit</button>
+    <button id="btnClose">Cancel</button>
+  </div>
+
   <div id="dialog" class="web_dialog">
     <div></div>
   </div>
 
-<%= link_to 'New Task', new_event_task_path, :remote => true %>
+<%= link_to 'New Task', new_event_task_path, :remote => true, :id => 'btn' %>
 
 </div>
