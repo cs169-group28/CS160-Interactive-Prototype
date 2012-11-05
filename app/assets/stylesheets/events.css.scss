@@ -1,0 +1,64 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+	margin: 0px;
+	background-color: #F2F7F2;
+}
+
+#event_list{
+	width: 90%;
+	float: left;
+	padding-left: 50px;
+	padding-top: 50px;
+}
+#profile_area{
+	margin-left: 30px;
+}
+
+#profile_photo{
+	float:left;
+	height: 180px;
+	width: 180px;
+
+	/* This centers the image */
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+
+	/* This adds the border */
+	padding:8px;
+	border:solid;
+	border-color: #dddddd #aaaaaa #aaaaaa #dddddd;
+	border-width: 1px 2px 2px 1px;
+	background-color:white;
+}
+
+#profile_name{
+	font-family: arial, helvetica, sans-serif;
+	font-size: 6.0em;
+	line-height: 18px;
+	position: absolute;
+	margin-left: -10px;
+	margin-top: 130px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-left: 230px;
+	z-index: -1;
+	width: 70%;
+	background-color: #CDE1C5;
+	color: #253C5C;
+}
+
+#top_bar {
+	background-color: #253C5C;
+	height: 3.0em;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.shadow {
+	-moz-box-shadow:    3px 3px 5px 6px #ccc;
+	-webkit-box-shadow: 3px 3px 5px 6px #ccc;
+	box-shadow:         3px 3px 5px 6px #ccc;
+}
