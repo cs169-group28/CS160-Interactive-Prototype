@@ -34,7 +34,7 @@ body {
 	display: none;
 }
 .web_dialog {
-	display: none;
+	display: block;
 	padding: 0 10px 10px;
 	position: fixed;
 	width: 500px;
