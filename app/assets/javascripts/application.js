@@ -12,13 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= modals
 //= require_tree .
 
 $(document).ready(function () {
-	var $modal = $('#dialog2'),
+	var $modal = $('#dialog'),
 
-    	$modal_container = $('#overlay');
+    	$modal_container = $('overlay');
 
   $('a[data-remote]').live('ajax:beforeSend', function(e, xhr, settings){
     xhr.setRequestHeader('accept', '*/*;q=0.5, text/html, ' + settings.accepts.html);
@@ -32,7 +31,8 @@ $(document).ready(function () {
     $modal_container.show();
   });
 
- 
+
+
 	$("#addob").keypress(function(e){
 		if (e.which == 13) {
 			e.preventDefault();

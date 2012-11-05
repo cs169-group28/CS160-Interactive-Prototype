@@ -27,6 +27,12 @@
 
   <br />
 
+  <div id="overlay" class="web_dialog_overlay"></div>
+  
+  <div id="dialog" class="web_dialog">
+    <h1></h1>
+  </div>
 
-  <%= link_to 'New Event', new_event_path, :remote => true %>
+
+  <%= link_to('New Event', new_event_path, :id => 'btn', :remote => true) %>
 </div>
