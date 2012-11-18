@@ -12,25 +12,26 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require twitter/bootstrap
 //= require_tree .
 
 $(document).ready(function () {
 	var $modal = $('#dialog'),
 
-    	$modal_container = $('overlay');
+	$modal_container = $('overlay');
 
-  $('a[data-remote]').live('ajax:beforeSend', function(e, xhr, settings){
-    xhr.setRequestHeader('accept', '*/*;q=0.5, text/html, ' + settings.accepts.html);
-  });
+	$('a[data-remote]').live('ajax:beforeSend', function(e, xhr, settings){
+	xhr.setRequestHeader('accept', '*/*;q=0.5, text/html, ' + settings.accepts.html);
+	});
 
-  $('a[data-remote]').live('ajax:success', function(xhr, data, status){
-    $modal
-      .html(data)
-      .css('top', $(window).scrollTop() + 40)
-      .show();
-    $modal_container.show();
-  });
+	$('a[data-remote]').live('ajax:success', function(xhr, data, status){
+		$modal
+		.html(data)
+		.css('top', $(window).scrollTop() + 40)
+		.show();
+		$modal_container.show();
+	});
 
 
 
@@ -151,6 +152,9 @@ $(document).ready(function () {
 		HideDialog();
 		e.preventDefault();
 	});
+
+	$(".accordion").accordion();
+	console.log("hello world");
 });
 
 function ShowDialog() {

@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @event = Event.find(params[:event_id])
-    @tasks = Task.all
+    @tasks = Task.where("event_id = ?", params[:event_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -48,7 +48,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to event_task_url(@task.event_id, @task.id), notice: 'Task was successfully created.' }
+        format.html { redirect_to event_tasks_path, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }

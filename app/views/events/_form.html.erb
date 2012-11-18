@@ -1,3 +1,9 @@
+<script>
+$(function(){
+  $(".datepicker").datepicker();
+});
+</script>
+
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -11,32 +17,34 @@
     </div>
   <% end %>
 
-   <div class="field">
-    <%= f.label :name %><div style="color:#ff0000; display:inline">*</div><br />
+
+  <div class="field form-inline">
+    <%= f.label :name %>
+    <div style="color:red;display:inline">*</div><br />
     <%= f.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="field form-inline">
     <%= f.label :start_date %><br />
-    <%= f.text_field :start_date %>
+    <%= f.text_field :start_date, :class => "datepicker" %>
   </div>
 
-  <div class="field">
+  <div class="field form-inline">
     <%= f.label :start_time %><br />
     <%= f.text_field :start_time %>
   </div>
 
-  <div class="field">
-    <%= f.label :end_date %></div><br />
-    <%= f.text_field :end_date %>
+  <div class="field form-inline">
+    <%= f.label :end_date %><br />
+    <%= f.text_field :end_date , :class => "datepicker"%>
   </div>
 
-  <div class="field">
-    <%= f.label :end_time %></div><br />
-    <%= f.text_field :end_time %>
+  <div class="field form-inline">
+    <%= f.label :end_time %><br />
+    <%= f.text_field :end_time%>
   </div>
 
-  <div class="field">
+  <div class="field form-inline">
     <%= f.label :location %><br />
     <%= f.text_field :location %>
   </div>
