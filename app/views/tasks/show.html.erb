@@ -1,6 +1,66 @@
 <p id="notice"><%= notice %></p>
-	
 
+<h3><%= @task.name %></h3>
+
+<ul class="nav nav-tabs">
+  <li><a href="#objectives" data-toggle="tab">Objectives</a></li>
+  <li><a href="#resources" data-toggle="tab">Resources</a></li>
+  <li><a href="#budget" data-toggle="tab">Budget</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="objectives">
+    Objectives
+  </div>
+  
+  <div class="tab-pane" id="resources">
+    Resources
+  </div>
+  
+  <div class="tab-pane" id="budget">
+    Budget
+  </div>
+</div>
+
+<div>
+    <div id="tab1">
+      <ul id="objectives">
+      </ul>
+      <form> 
+        <input id="addob" type="text" placeholder=" + add objective"/>
+      </form>
+    </div>
+    <div id="tab2">
+      <ul id="resources">
+      </ul>
+      <form>
+        <input id="addre" type="text" placeholder=" + add resource"/>
+      </form>
+    </div>
+    <div id="tab3">
+      <div id="spent-wrapper"> 
+        <p>Spent</p>
+      </div>
+      <div id="budget-wrapper">
+        <p>Budget</p>
+      </div>
+      <div id="budget-item-wrapper"> 
+      </div>
+      <br />
+      <form>
+        <input id="addbi" type="text" placeholder=" + add item"/>
+        <input id="addbb" type="number" value="0"/>
+        <input id="addbs" type="number" value="0"/>
+      </form>
+      Total:
+      <div class="amts">
+        <span id="totalbudget">____</span> 
+        <span id="totalspent">____</span>
+      </div>
+    </div>
+    <button id="btnSubmit">Submit</button>
+    <button id="btnClose">Cancel</button>
+  </div>
 
 <%= link_to 'Edit', edit_event_task_path(@task) %> |
 <%= link_to 'Back', event_tasks_path %>

@@ -132,6 +132,10 @@ $(document).ready(function () {
 		ShowDialog();
 		e.preventDefault();
 	});
+	$(".diag").click(function (e) {
+	ShowDialog();
+	e.preventDefault();
+	});
 	$("#btnClose").click(function (e) {
 		HideDialog();
 		e.preventDefault();
@@ -140,6 +144,7 @@ $(document).ready(function () {
 		HideDialog();
 		e.preventDefault();
 	});
+
 	$(".btn2").click(function(e) {
 		ShowDialog2();
 		e.preventDefault();
@@ -153,8 +158,6 @@ $(document).ready(function () {
 		e.preventDefault();
 	});
 
-	$(".accordion").accordion();
-	console.log("hello world");
 });
 
 function ShowDialog() {
