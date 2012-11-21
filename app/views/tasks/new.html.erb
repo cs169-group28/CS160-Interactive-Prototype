@@ -1,6 +1,6 @@
-<h1>New task</h1>
+<h1>Create a New Task</h1>
 <%= form_for([@event, @task], :url => event_tasks_path) do |f| %>
 	<%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 
-<%= link_to 'Back', event_tasks_path %>
+<button class="btn" data-dismiss="modal" aria-hidden="true" style="margin-top:-10px;margin-right:10px;float:right">Close</button>
