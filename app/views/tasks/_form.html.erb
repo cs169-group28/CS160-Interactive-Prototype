@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field" style="visibility: hidden;">
+  <div class="field" style="visibility: hidden; height:1px">
     <%= f.label :event_id %><br />
     <%= f.text_field :event_id %>
   </div>
   
-  <div class="field">
+  <div class="field form-inline">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
   
-  <div class="field">
+  <div class="field form-inline">
     <%= f.label :description %><br />
-    <%= f.text_area :description, :size => "120x12" %>
+    <%= f.text_area :description, :size => "200x12" %>
   </div>
   
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 
+  <div class="actions">
+      <%= f.submit :class => "btn btn-primary" , :style => "float:right" %>
+  </div>

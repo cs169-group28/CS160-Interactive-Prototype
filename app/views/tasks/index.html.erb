@@ -28,7 +28,7 @@
                 <div class="well"><%= task.description%></div>
               </div>
             </td>
-            <td><%= link_to 'Show', event_task_path(task.event_id, task), "data-toggle" => "modal", "data-target" => "#myModal" %></td>
+            <td><%= link_to 'Show', event_task_path(task.event_id, task), "data-toggle" => "modal", "data-target" => "#showTaskModal" %></td>
             <td><%= link_to 'Edit', edit_event_task_path(task.event_id, task) %></td>
             <td><%= link_to 'Destroy', event_task_path(task.event_id, task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
@@ -37,22 +37,21 @@
 
         <br />
 
-        <%= link_to 'New Task', new_event_task_path, "data-toggle" => "modal", "data-target" => "#newModal", :id => 'btn', :class => "btn btn-large btn-primary"%>
+        <%= link_to 'New Task', new_event_task_path, :id => 'btn', :class => "btn btn-large btn-primary", "data-toggle" => "modal", "data-target" => "#newTaskModal"%>
         
       </div>
     </div>
   </div>
 </div>
 
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="showTaskModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-body">
   </div>
 </div>
 
-<div id="newModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-body">
+<div id="newTaskModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-body" style="max-height:80%; max-width:80%">
   </div>
 </div>
-
 
 </div>
