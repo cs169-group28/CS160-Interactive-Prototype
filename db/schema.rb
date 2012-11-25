@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105185949) do
+ActiveRecord::Schema.define(:version => 20121125005814) do
 
   create_table "events", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20121105185949) do
     t.decimal  "budget"
     t.boolean  "b_flag"
     t.boolean  "completed"
+    t.decimal  "spent"
   end
 
   create_table "planners", :force => true do |t|

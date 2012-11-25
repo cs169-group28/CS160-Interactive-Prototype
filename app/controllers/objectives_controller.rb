@@ -1,4 +1,13 @@
 class ObjectivesController < ApplicationController
+  
+  def task_objectives
+    @objectives = Objective.where("task_id = ?", params[:task_id])
+
+    respond_to do |format|
+      format.json {render json: @objectives }
+    end
+  end
+
   # GET /objectives
   # GET /objectives.json
   def index
@@ -60,7 +69,7 @@ class ObjectivesController < ApplicationController
 
     respond_to do |format|
       if @objective.update_attributes(params[:objective])
-        format.html { redirect_to @objective, notice: 'Objective was successfully updated.' }
+        # format.html { redirect_to @objective, notice: 'Objective was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

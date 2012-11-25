@@ -6,6 +6,8 @@ CS160Project::Application.routes.draw do
     resources :tasks
   end
 
+  match "/objectives/tasks/:task_id" => "objectives#task_objectives"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

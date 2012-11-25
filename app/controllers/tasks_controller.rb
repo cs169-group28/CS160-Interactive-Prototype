@@ -16,7 +16,7 @@ class TasksController < ApplicationController
   def show
     @event = Event.find(params[:event_id])
     @task = Task.find(params[:id])
-    @objectives = Objective.all
+    @objectives = Objective.where("task_id = ?", params[:id])
     @new_obj = Objective.new
 
     respond_to do |format|

@@ -1,8 +1,6 @@
 <script>
-  $(document).ready(function(){
-  });
-
   function refreshTable(msg){
+    //THIS UPDATES THE OBJECTIVES TABLE
     var html = "";
     for (index in msg){
       html += "<tr><td>"
@@ -21,41 +19,122 @@
     }
     $("#objectives_table").html(html);
     $("#new_obj_field").attr("value", "");
+
+    //THIS UPDATES THE BUDGET TABLE
+    //You can smash this loop and the previous loop together but easier to read this way
+    html = "<tr><th>Name</th><th>Budget</th><th>Spent</th></tr>";
+    var budget_total = 0.0;
+    var spent_total = 0.0;
+    for (index in msg){
+        budget_total += parseFloat(msg[index].budget);
+        spent_total += parseFloat(msg[index].spent);
+
+        html += "<tr>";
+
+        html += "<td>"+msg[index].name+"</td>";
+
+        html += '<td><input type="number" id="'+msg[index].id+'" class="input-small budget_value budget_value" value="'+msg[index].budget+'"></input></td>';
+        html += '<td><input type="number" id="'+msg[index].id+'" class="input-small spent_value spent_value" value="'+msg[index].spent+'"></input></td>';
+
+        html += "</tr>";
+    }
+    html += "<tr><td>Total:</td><td>"+budget_total+"</td><td>"+spent_total+"</td></tr>";
+
+    $("#budget_table").html(html);
+    rebindBudgetTab();
+    rebindDoneToggles();
+  };
+
+  $(document).ready(function(){
+    rebindBudgetTab();
+    rebindDoneToggles();
+  });
+
+  //when you refresh the tab, budget tab javascript binding disappear so you need to
+  //rebind them every time you refresh that tab
+  function rebindBudgetTab(){
+
+    //allow ajax when user presses enter in textbox
+    $('.budget_value').keypress(function (e) {
+      if (e.which == 13) {
+        this.blur();
+      }
+    });
+
+    $('.spent_value').keypress(function (e) {
+      if (e.which == 13) {
+        this.blur();
+      }
+    });
+
+    //allow ajax when user leaves the textbox
+    $(".budget_value").blur(function(){
+      $.ajax({
+        type: "PUT",
+        url: "/objectives/"+this.id,
+        contentType: 'application/json',
+        data: '{"objective":{"budget":'+this.value+'}}'
+      }).done(function( msg ) {
+        $.ajax({
+          type: "GET",
+          url: "/objectives/tasks/<%= params[:id] %>.json",
+        }).done(function( msg ) {
+          refreshTable(msg);
+        });
+      });
+    });
+
+    $(".spent_value").blur(function(){
+      $.ajax({
+        type: "PUT",
+        url: "/objectives/"+this.id,
+        contentType: 'application/json',
+        data: '{"objective":{"spent":'+this.value+'}}'
+      }).done(function( msg ) {
+        $.ajax({
+          type: "GET",
+          url: "/objectives/tasks/<%= params[:id] %>.json",
+        }).done(function( msg ) {
+          refreshTable(msg);
+        });
+      });
+    });
+  };
+
+  $("#new_objective").on("ajax:complete", function(event,xhr,status){
+    $.ajax({
+      type: "GET",
+      url: "/objectives/tasks/<%= params[:id] %>.json",
+      data: { 
+      }
+    }).done(function( msg ) {
+      refreshTable(msg);
+    });
+  });
+
+  function rebindDoneToggles(){
+    $(".mark_done").on("ajax:complete", function(event,xhr,status){
+      $.ajax({
+        type: "GET",
+        url: "/objectives/tasks/<%= params[:id] %>.json",
+        data: { 
+        }
+      }).done(function( msg ) {
+        refreshTable(msg);
+      });
+    });
+
+    $(".delete_btn").on("ajax:complete", function(event,xhr,status){
+      $.ajax({
+        type: "GET",
+        url: "/objectives/tasks/<%= params[:id] %>.json",
+        data: { 
+        }
+      }).done(function( msg ) {
+        refreshTable(msg);
+      });
+    });
   }
-
-  $("#new_objective").live("ajax:complete", function(event,xhr,status){
-    $.ajax({
-      type: "GET",
-      url: "/objectives.json",
-      data: { 
-      }
-    }).done(function( msg ) {
-      refreshTable(msg);
-    });
-  });
-
-  $(".mark_done").live("ajax:complete", function(event,xhr,status){
-    $.ajax({
-      type: "GET",
-      url: "/objectives.json",
-      data: { 
-      }
-    }).done(function( msg ) {
-      refreshTable(msg);
-      console.log(msg);
-    });
-  });
-
-  $(".delete_btn").live("ajax:complete", function(event,xhr,status){
-    $.ajax({
-      type: "GET",
-      url: "/objectives.json",
-      data: { 
-      }
-    }).done(function( msg ) {
-      refreshTable(msg);
-    });
-  });
 </script>
 
 <p id="notice"><%= notice %></p>
@@ -113,6 +192,14 @@
         <%= f.text_field :task_id, :value => params[:id] %>
       </div>
 
+      <div class="field" style="visibility:hidden; height:1px">
+        <%= f.text_field :budget, :value => "0" %>
+      </div>
+
+      <div class="field" style="visibility:hidden; height:1px">
+        <%= f.text_field :spent, :value => "0" %>
+      </div>
+
       <div class="field form-inline" style="float:left; margin-right:10px">
         <%= f.text_field :name, :placeholder => "new objective" , :id => "new_obj_field" %>
       </div>
@@ -136,35 +223,38 @@
   <% #BUDGET TAB ------------------------------------------------------------------------- %>
 
   <div class="tab-pane" id="budget">
-    Budget
-    <div id="spent-wrapper"> 
-      <p>Spent</p>
-    </div>
 
-    <div id="budget-wrapper">
-      <p>Budget</p>
-    </div>
+    <table class="table table-striped table-hover" id="budget_table">
+      <tr>
+        <th>Name</th>
+        <th>Budget</th>
+        <th>Spent</th>
+      </tr>
 
-    <div id="budget-item-wrapper"> 
-    </div>
+      <% budget_total = 0.0 %>
+      <% spent_total = 0.0 %>
 
-    <br />
-    <form>
-      <input id="addbi" type="text" placeholder=" + add item"/>
-      <input id="addbb" type="number" value="0"/>
-      <input id="addbs" type="number" value="0"/
-    </form>
+      <% @objectives.each do |objective| %>
 
-    Total:
-    <div class="amts">
-      <span id="totalbudget">____</span> 
-      <span id="totalspent">____</span>
-    </div>
-    <button id="btnSubmit">Submit</button>
-    <button id="btnClose">Cancel</button>
+        <% budget_total += objective.budget %>
+        <% spent_total += objective.spent %>
+
+        <tr>
+          <td><%= objective.name %></td>
+
+          <td><input id="<%= objective.id %>" type="number" class="input-small budget_value" value="<%= objective.budget %>"></input></td>
+          <td><input id="<%= objective.id %>" type="number" class="input-small spent_value" value="<%= objective.spent %>"></input></td>
+
+        </tr>
+      <% end %>
+      <tr>
+        <td>Total:</td>
+        <td><%= budget_total %></td>
+        <td><%= spent_total %></td>
+    </table>
+
   </div>
-
 </div>
 
-<%= link_to 'Edit', edit_event_task_path(@task) %> |
-<%= link_to 'Back', event_tasks_path %>
+<br />
+<button data-dismiss="modal" class="btn btn-primary" style="float:right" type="button">Back to Tasks</button>

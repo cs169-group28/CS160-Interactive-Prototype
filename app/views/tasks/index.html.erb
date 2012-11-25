@@ -1,4 +1,13 @@
-
+<script>
+  //forces the modal to reload on every click,
+  //otherwise it is lazy and only loads content the first time
+  //you use it
+  $(document).ready(function(){
+    $('#showTaskModal').on('hidden', function() {
+        $(this).data('modal').$element.removeData();
+    })
+  });
+</script>
 <div id="container">
   <div id="event_name">
   </div>
