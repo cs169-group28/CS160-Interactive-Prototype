@@ -1,66 +1,170 @@
+<script>
+  $(document).ready(function(){
+  });
+
+  function refreshTable(msg){
+    var html = "";
+    for (index in msg){
+      html += "<tr><td>"
+      if (msg[index].completed){
+        html += "<i class='icon-ok'></i>"
+      }
+      html += "</td><td>"+msg[index].name+"</td>";
+
+      if (msg[index].completed){
+        html += '<td><a href="/objectives/'+msg[index].id+'?objective%5Bcompleted%5D=false" class="mark_done btn btn-warning" data-method="put" data-remote="true" rel="nofollow" style="float:right">mark not done</a></td>'
+      } else {
+        html += '<td><a href="/objectives/'+msg[index].id+'?objective%5Bcompleted%5D=true" class="mark_done btn btn-success" data-method="put" data-remote="true" rel="nofollow" style="float:right">mark done</a></td>'
+      }
+
+      html += "<td><a href='/objectives/"+msg[index].id+"' data-method='delete' data-remote='true' rel='nofollow' class='btn btn-danger delete_btn' style='float:right'>Delete</a></td></tr>"
+    }
+    $("#objectives_table").html(html);
+    $("#new_obj_field").attr("value", "");
+  }
+
+  $("#new_objective").live("ajax:complete", function(event,xhr,status){
+    $.ajax({
+      type: "GET",
+      url: "/objectives.json",
+      data: { 
+      }
+    }).done(function( msg ) {
+      refreshTable(msg);
+    });
+  });
+
+  $(".mark_done").live("ajax:complete", function(event,xhr,status){
+    $.ajax({
+      type: "GET",
+      url: "/objectives.json",
+      data: { 
+      }
+    }).done(function( msg ) {
+      refreshTable(msg);
+      console.log(msg);
+    });
+  });
+
+  $(".delete_btn").live("ajax:complete", function(event,xhr,status){
+    $.ajax({
+      type: "GET",
+      url: "/objectives.json",
+      data: { 
+      }
+    }).done(function( msg ) {
+      refreshTable(msg);
+    });
+  });
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <h3><%= @task.name %></h3>
 
 <ul class="nav nav-tabs">
-  <li><a href="#objectives" data-toggle="tab">Objectives</a></li>
+  <li class="active"><a href="#objectives" data-toggle="tab">Objectives</a></li>
   <li><a href="#resources" data-toggle="tab">Resources</a></li>
   <li><a href="#budget" data-toggle="tab">Budget</a></li>
 </ul>
 
 <div class="tab-content">
+
+  <% #OBJECTIVES TAB ------------------------------------------------------------------------- %>
   <div class="tab-pane active" id="objectives">
-    Objectives
+    <table class="table table-striped table-hover" id="objectives_table">
+      <% @objectives.each do |objective| %>
+        <tr>
+
+          <% if objective.completed %>
+            <td><i class="icon-ok"></i></td>
+          <% else %>
+            <td></td>
+          <% end %>
+
+          <td><%= objective.name %></td>
+
+          <% if objective.completed %>
+            <td><%= link_to 'mark not done', objective_path(objective, :objective => {:completed => false}), :method => :put, :remote => true, :class => 'mark_done btn btn-warning', :style => "float:right" %></td>
+          <% else %>
+            <td><%= link_to 'mark done', objective_path(objective, :objective => {:completed => true}), :method => :put, :remote => true, :class => 'mark_done btn btn-success', :style => "float:right"%></td>
+          <% end %>
+
+          <td><%= link_to 'Delete', objective, method: :delete, :class => "btn btn-danger delete_btn", :style => "float:right", :remote => true %></td>
+        </tr>
+      <% end %>
+    </table>
+
+
+    <%= form_for(@new_obj, :remote => true, :id => "new_objective") do |f| %>
+      <% if @new_obj.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@objective.errors.count, "error") %> prohibited this objective from being saved:</h2>
+
+          <ul>
+            <% @new_obj.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field" style="visibility:hidden; height:1px">
+        <%= f.text_field :task_id, :value => params[:id] %>
+      </div>
+
+      <div class="field form-inline" style="float:left; margin-right:10px">
+        <%= f.text_field :name, :placeholder => "new objective" , :id => "new_obj_field" %>
+      </div>
+
+      <div class="actions" style="padding-top:1px">
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
   
+  <% #RESOURCES TAB ------------------------------------------------------------------------- %>
+
   <div class="tab-pane" id="resources">
     Resources
+    <ul id="resources"></ul>
+    <form>
+      <input id="addre" type="text" placeholder=" + add resource"/>
+    </form>
   </div>
   
+  <% #BUDGET TAB ------------------------------------------------------------------------- %>
+
   <div class="tab-pane" id="budget">
     Budget
-  </div>
-</div>
+    <div id="spent-wrapper"> 
+      <p>Spent</p>
+    </div>
 
-<div>
-    <div id="tab1">
-      <ul id="objectives">
-      </ul>
-      <form> 
-        <input id="addob" type="text" placeholder=" + add objective"/>
-      </form>
+    <div id="budget-wrapper">
+      <p>Budget</p>
     </div>
-    <div id="tab2">
-      <ul id="resources">
-      </ul>
-      <form>
-        <input id="addre" type="text" placeholder=" + add resource"/>
-      </form>
+
+    <div id="budget-item-wrapper"> 
     </div>
-    <div id="tab3">
-      <div id="spent-wrapper"> 
-        <p>Spent</p>
-      </div>
-      <div id="budget-wrapper">
-        <p>Budget</p>
-      </div>
-      <div id="budget-item-wrapper"> 
-      </div>
-      <br />
-      <form>
-        <input id="addbi" type="text" placeholder=" + add item"/>
-        <input id="addbb" type="number" value="0"/>
-        <input id="addbs" type="number" value="0"/>
-      </form>
-      Total:
-      <div class="amts">
-        <span id="totalbudget">____</span> 
-        <span id="totalspent">____</span>
-      </div>
+
+    <br />
+    <form>
+      <input id="addbi" type="text" placeholder=" + add item"/>
+      <input id="addbb" type="number" value="0"/>
+      <input id="addbs" type="number" value="0"/
+    </form>
+
+    Total:
+    <div class="amts">
+      <span id="totalbudget">____</span> 
+      <span id="totalspent">____</span>
     </div>
     <button id="btnSubmit">Submit</button>
     <button id="btnClose">Cancel</button>
   </div>
+
+</div>
 
 <%= link_to 'Edit', edit_event_task_path(@task) %> |
 <%= link_to 'Back', event_tasks_path %>

@@ -44,7 +44,7 @@ class ObjectivesController < ApplicationController
 
     respond_to do |format|
       if @objective.save
-        format.html { redirect_to @objective, notice: 'Objective was successfully created.' }
+        #format.html { redirect_to @objective, notice: 'Objective was successfully created.' }
         format.json { render json: @objective, status: :created, location: @objective }
       else
         format.html { render action: "new" }
@@ -76,7 +76,7 @@ class ObjectivesController < ApplicationController
     @objective.destroy
 
     respond_to do |format|
-      format.html { redirect_to objectives_url }
+      # format.html { redirect_to objectives_url }
       format.json { head :no_content }
     end
   end

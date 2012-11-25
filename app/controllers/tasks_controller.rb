@@ -16,6 +16,8 @@ class TasksController < ApplicationController
   def show
     @event = Event.find(params[:event_id])
     @task = Task.find(params[:id])
+    @objectives = Objective.all
+    @new_obj = Objective.new
 
     respond_to do |format|
       format.html # show.html.erb
