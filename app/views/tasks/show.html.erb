@@ -45,11 +45,6 @@
     rebindDoneToggles();
   };
 
-  $(document).ready(function(){
-    rebindBudgetTab();
-    rebindDoneToggles();
-  });
-
   //when you refresh the tab, budget tab javascript binding disappear so you need to
   //rebind them every time you refresh that tab
   function rebindBudgetTab(){
@@ -101,17 +96,6 @@
     });
   };
 
-  $("#new_objective").on("ajax:complete", function(event,xhr,status){
-    $.ajax({
-      type: "GET",
-      url: "/objectives/tasks/<%= params[:id] %>.json",
-      data: { 
-      }
-    }).done(function( msg ) {
-      refreshTable(msg);
-    });
-  });
-
   function rebindDoneToggles(){
     $(".mark_done").on("ajax:complete", function(event,xhr,status){
       $.ajax({
@@ -135,20 +119,39 @@
       });
     });
   }
+
+  //catch the complete ajax request when new objective is pressed
+  //and refresh the table
+  $("#new_objective").on("ajax:complete", function(event,xhr,status){
+    $.ajax({
+      type: "GET",
+      url: "/objectives/tasks/<%= params[:id] %>.json",
+      data: { 
+      }
+    }).done(function( msg ) {
+      refreshTable(msg);
+    });
+  });
+
+  $(document).ready(function(){
+    rebindBudgetTab();
+    rebindDoneToggles();
+  });
 </script>
 
 <p id="notice"><%= notice %></p>
 
 <h3><%= @task.name %></h3>
 
+<% #TAB NAVIGATION DECLARATIONS------------------------------------------------------------- %>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#objectives" data-toggle="tab">Objectives</a></li>
   <li><a href="#resources" data-toggle="tab">Resources</a></li>
   <li><a href="#budget" data-toggle="tab">Budget</a></li>
 </ul>
 
+<% #TAB CONTENT DECLARATIONS------------------------------------------------------------- %>
 <div class="tab-content">
-
   <% #OBJECTIVES TAB ------------------------------------------------------------------------- %>
   <div class="tab-pane active" id="objectives">
     <table class="table table-striped table-hover" id="objectives_table">
@@ -204,14 +207,13 @@
         <%= f.text_field :name, :placeholder => "new objective" , :id => "new_obj_field" %>
       </div>
 
-      <div class="actions" style="padding-top:1px">
+      <div class="actions btn" style="padding-top:1px">
         <%= f.submit %>
       </div>
     <% end %>
   </div>
   
   <% #RESOURCES TAB ------------------------------------------------------------------------- %>
-
   <div class="tab-pane" id="resources">
     Resources
     <ul id="resources"></ul>
@@ -221,7 +223,6 @@
   </div>
   
   <% #BUDGET TAB ------------------------------------------------------------------------- %>
-
   <div class="tab-pane" id="budget">
 
     <table class="table table-striped table-hover" id="budget_table">
@@ -252,7 +253,6 @@
         <td><%= budget_total %></td>
         <td><%= spent_total %></td>
     </table>
-
   </div>
 </div>
 
