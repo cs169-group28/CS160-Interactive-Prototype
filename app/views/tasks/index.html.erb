@@ -37,7 +37,7 @@
             <!-- Edit has been removed b/c of user feedback
               <td style="width:10px"><%= link_to 'Edit', edit_event_task_path(task.event_id, task), :class => "btn btn-info", :style => "float:right" %></td> 
             -->
-            
+
             <td style="width:10px"><%= link_to 'Delete', event_task_path(task.event_id, task), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger", :style => "float:right" %></td>
           </tr>
         <% end %>
@@ -50,8 +50,8 @@
   </div>
 </div>
 
-<div id="showTaskModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-body" style="max-height:80%; max-width:80%">
+<div id="showTaskModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:-47%;margin-left:-35%%;height:90%;width:70%">
+  <div class="modal-body" style="max-height:100%;padding:0px 15px">
   </div>
 </div>
 

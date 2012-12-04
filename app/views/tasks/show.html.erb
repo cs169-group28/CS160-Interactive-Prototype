@@ -191,15 +191,15 @@
         </div>
       <% end %>
 
-      <div class="field" style="visibility:hidden; height:1px">
+      <div class="field" style="visibility:hidden; height:0px">
         <%= f.text_field :task_id, :value => params[:id] %>
       </div>
 
-      <div class="field" style="visibility:hidden; height:1px">
+      <div class="field" style="visibility:hidden; height:0px">
         <%= f.text_field :budget, :value => "0" %>
       </div>
 
-      <div class="field" style="visibility:hidden; height:1px">
+      <div class="field" style="visibility:hidden; height:0px">
         <%= f.text_field :spent, :value => "0" %>
       </div>
 
@@ -207,8 +207,8 @@
         <%= f.text_field :name, :placeholder => "new objective" , :id => "new_obj_field" %>
       </div>
 
-      <div class="actions btn" style="padding-top:1px">
-        <%= f.submit %>
+      <div class="actions" style="padding-top:1px">
+        <%= f.submit 'add objective' , :class => "btn" %>
       </div>
     <% end %>
   </div>
