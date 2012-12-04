@@ -8,16 +8,9 @@
     })
   });
 </script>
-<div id="container">
-  <div id="event_name">
-  </div>
 
-
-<div class="container-fluid">
-
-  <div class="row-fluid">
-    <div class="span9">
-      <div id="event_list">
+<div class="container">
+  <div class="row" style="margin-left:0px">
 
         <h1>Tasks for <%= @event.name %> </h1>
 
@@ -40,8 +33,12 @@
               </div>
             </td>
             <td><%= link_to 'Show', event_task_path(task.event_id, task), "data-toggle" => "modal", "data-target" => "#showTaskModal", :class => "btn btn-success", :style => "float:right" %></td>
-            <td><%= link_to 'Edit', edit_event_task_path(task.event_id, task), :class => "btn btn-info", :style => "float:right" %></td>
-            <td><%= link_to 'Delete', event_task_path(task.event_id, task), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger", :style => "float:right" %></td>
+
+            <!-- Edit has been removed b/c of user feedback
+              <td style="width:10px"><%= link_to 'Edit', edit_event_task_path(task.event_id, task), :class => "btn btn-info", :style => "float:right" %></td> 
+            -->
+            
+            <td style="width:10px"><%= link_to 'Delete', event_task_path(task.event_id, task), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger", :style => "float:right" %></td>
           </tr>
         <% end %>
         </table>
@@ -50,13 +47,11 @@
 
         <%= link_to 'New Task', new_event_task_path, :id => 'btn', :class => "btn btn-large btn-primary", "data-toggle" => "modal", "data-target" => "#newTaskModal"%>
         
-      </div>
-    </div>
   </div>
 </div>
 
 <div id="showTaskModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-body">
+  <div class="modal-body" style="max-height:80%; max-width:80%">
   </div>
 </div>
 

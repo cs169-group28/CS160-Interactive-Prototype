@@ -22,7 +22,7 @@ class ObjectivesController < ApplicationController
   # GET /objectives/1
   # GET /objectives/1.json
   def show
-    @objective = Objective.find(params[:id])
+    @objective = Objective.find(params[:id], :order => 'id')
 
     respond_to do |format|
       format.html # show.html.erb
