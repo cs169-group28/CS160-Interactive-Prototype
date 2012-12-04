@@ -3,19 +3,19 @@
     //THIS UPDATES THE OBJECTIVES TABLE
     var html = "";
     for (index in msg){
-      html += "<tr><td>"
+      html += "<tr><td style='width:30px'>"
       if (msg[index].completed){
         html += "<i class='icon-ok'></i>"
       }
-      html += "</td><td>"+msg[index].name+"</td>";
+      html += "</td><td><p style='font-size:1.5em'>"+msg[index].name+"</p></td>";
 
       if (msg[index].completed){
-        html += '<td><a href="/objectives/'+msg[index].id+'?objective%5Bcompleted%5D=false" class="mark_done btn btn-warning" data-method="put" data-remote="true" rel="nofollow" style="float:right">mark not done</a></td>'
+        html += '<td style="width:200px"><a href="/objectives/'+msg[index].id+'?objective%5Bcompleted%5D=false" class="mark_done btn btn-warning" data-method="put" data-remote="true" rel="nofollow" style="float:right">mark not done</a></td>'
       } else {
-        html += '<td><a href="/objectives/'+msg[index].id+'?objective%5Bcompleted%5D=true" class="mark_done btn btn-success" data-method="put" data-remote="true" rel="nofollow" style="float:right">mark done</a></td>'
+        html += '<td style="width:200px"><a href="/objectives/'+msg[index].id+'?objective%5Bcompleted%5D=true" class="mark_done btn btn-success" data-method="put" data-remote="true" rel="nofollow" style="float:right">mark done</a></td>'
       }
 
-      html += "<td><a href='/objectives/"+msg[index].id+"' data-method='delete' data-remote='true' rel='nofollow' class='btn btn-danger delete_btn' style='float:right'>Delete</a></td></tr>"
+      html += "<td style='width:1px'><a href='/objectives/"+msg[index].id+"' data-method='delete' data-remote='true' rel='nofollow' class='btn btn-danger delete_btn' style='float:right'>Delete</a></td></tr>"
     }
     $("#objectives_table").html(html);
     $("#new_obj_field").attr("value", "");
@@ -159,20 +159,24 @@
         <tr>
 
           <% if objective.completed %>
-            <td><i class="icon-ok"></i></td>
+            <td style="width:30px"><i class="icon-ok"></i></td>
           <% else %>
-            <td></td>
+            <td style="width:30px"></td>
           <% end %>
 
-          <td><%= objective.name %></td>
+          <td><p style="font-size:1.5em"><%= objective.name %></p></td>
 
+          <!-- (not) Done Button -->
           <% if objective.completed %>
-            <td><%= link_to 'mark not done', objective_path(objective, :objective => {:completed => false}), :method => :put, :remote => true, :class => 'mark_done btn btn-warning', :style => "float:right" %></td>
+            <td style="width:200px"><%= link_to 'mark not done', objective_path(objective, :objective => {:completed => false}), :method => :put, :remote => true, :class => 'mark_done btn btn-warning', :style => "float:right" %></td>
           <% else %>
-            <td><%= link_to 'mark done', objective_path(objective, :objective => {:completed => true}), :method => :put, :remote => true, :class => 'mark_done btn btn-success', :style => "float:right"%></td>
+            <td style="width:200px"><%= link_to 'mark done', objective_path(objective, :objective => {:completed => true}), :method => :put, :remote => true, :class => 'mark_done btn btn-success', :style => "float:right"%></td>
           <% end %>
 
-          <td><%= link_to 'Delete', objective, method: :delete, :class => "btn btn-danger delete_btn", :style => "float:right", :remote => true %></td>
+          <!--Edit Link -->
+
+          <!--Delete Link -->
+          <td style="width:1px"><%= link_to 'Delete', objective, method: :delete, :class => "btn btn-danger delete_btn", :style => "float:right", :remote => true %></td>
         </tr>
       <% end %>
     </table>

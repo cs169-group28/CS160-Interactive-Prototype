@@ -4,55 +4,58 @@ $(function(){
 });
 </script>
 
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<div class="container" style="width:100%">
+    <%= form_for(@event) do |f| %>
+      <% if @event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-      <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+          <ul>
+          <% @event.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
 
-  <div class="field form-inline">
-    <%= f.label :name %>
-    <div style="color:red;display:inline">*</div><br />
-    <%= f.text_field :name %>
-  </div>
+      <div class="field form-inline">
+        <%= f.label :name %>
+        <div style="color:red;display:inline">*</div><br />
+        <%= f.text_field :name %>
+      </div>
 
-  <div class="field form-inline">
-    <%= f.label :start_date %><br />
-    <%= f.text_field :start_date, :class => "datepicker" %>
-  </div>
+      <div class="field form-inline">
+        <%= f.label :start_date %><br />
+        <%= f.text_field :start_date, :class => "datepicker" %>
+      </div>
 
-  <div class="field form-inline">
-    <%= f.label :start_time %>(hh:mm)<br />
-    <%= f.text_field :start_time %>
-  </div>
+      <div class="field form-inline">
+        <%= f.label :start_time %>(hh:mm)<br />
+        <%= f.text_field :start_time %>
+      </div>
 
-  <div class="field form-inline">
-    <%= f.label :end_date %><br />
-    <%= f.text_field :end_date , :class => "datepicker"%>
-  </div>
+      <div class="field form-inline">
+        <%= f.label :end_date %><br />
+        <%= f.text_field :end_date , :class => "datepicker"%>
+      </div>
 
-  <div class="field form-inline">
-    <%= f.label :end_time %>(hh:mm)<br />
-    <%= f.text_field :end_time%>
-  </div>
+      <div class="field form-inline">
+        <%= f.label :end_time %>(hh:mm)<br />
+        <%= f.text_field :end_time%>
+      </div>
 
-  <div class="field form-inline">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
+      <div class="field form-inline">
+        <%= f.label :location %><br />
+        <%= f.text_field :location %>
+      </div>
 
 
-  <div style="color:#ff0000">*required</div>
+      <div style="color:#ff0000">*required</div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+      <div class="actions">
+        <%= f.submit :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+
+</div>
