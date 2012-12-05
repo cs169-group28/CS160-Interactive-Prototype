@@ -66,7 +66,7 @@ class ObjectivesController < ApplicationController
   # PUT /objectives/1.json
   def update
     @objective = Objective.find(params[:id])
-
+    
     respond_to do |format|
       if @objective.update_attributes(params[:objective])
         # format.html { redirect_to @objective, notice: 'Objective was successfully updated.' }
