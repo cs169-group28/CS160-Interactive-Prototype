@@ -7,6 +7,33 @@
         $(this).data('modal').$element.removeData();
     })
   });
+
+  function getDescriptionObjective(id){
+    $.ajax({
+      type: "GET",
+      url: "/objectives/tasks/"+id+".json",
+    }).done(function( msg ) {
+      console.log(msg);
+      var obj_table = "<table class='table table-striped'>";
+      for (index in msg){
+        obj_table += "<tr>";
+
+        if(msg[index].completed){
+          obj_table += "<td style='width:30px'><i class='icon-ok'></i></td>";
+        } else {
+          obj_table += "<td style='width:30px'></td>";
+        }
+
+        obj_table += "<td>" + msg[index].name + "</td>";
+
+        obj_table += "</tr>";
+      }
+      obj_table += "</table>";
+      $("#well_"+id).html(obj_table);
+      console.log(obj_table);
+      console.log($("#well_"+id).html());
+    });
+  };
 </script>
 
 <div class="container">
@@ -16,6 +43,7 @@
 
         <table class="table table-striped table-hover">
           <tr>
+            <th></th>
             <th>Name</th>
             <th></th>
             <th>Actions</th>
@@ -24,10 +52,22 @@
 
         <% @tasks.each do |task| %>
           <tr>
+            <td style="width:30px">
+              <% if task.completed %>
+                <i class='icon-ok'></i>
+              <% end %>
+            </td>
             <td style="margin:10px">
-              <a style="cursor:pointer;font-size:1.5em" data-toggle="collapse" data-target="#<%= task.id %>"><%= task.name %></a>
-              <div id="<%= task.id %>" class="collapse">
-                <div class="well"><%= task.description%></div>
+              <a style="cursor:pointer;font-size:1.5em" data-toggle="collapse" data-target="#desc_<%= task.id %>" onclick="javascript:getDescriptionObjective(<%= task.id %>)"><%= task.name %></a>
+              <div id="desc_<%= task.id %>" class="collapse">
+                <div class="well" style="background:white">
+                  <h5>Description:</h5><%= task.description%>
+                  <br />
+                  <br />
+                  <h5>Objectives:</h5>
+                  <div id="well_<%= task.id %>">
+                  </div>
+                </div>
               </div>
             </td>
             <td style="width:10px"><%= link_to 'Show', event_task_path(task.event_id, task), "data-toggle" => "modal", "data-target" => "#showTaskModal", :class => "btn btn-success"%></td>

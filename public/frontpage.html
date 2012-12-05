@@ -1,7 +1,144 @@
 <html>
 
-<h1>The frontpage</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~Headers~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- I just compied and pasted it frome other pages -->
+<head>
+	<title>CS160Project - Interactive Prototype</title>
+	<link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.core.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.theme.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.accordion.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.autocomplete.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.button.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.datepicker.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.dialog.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.progressbar.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.resizable.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.selectable.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.slider.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.tabs.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.base.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/jquery.ui.all.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/assets/twitter/bootstrap.css?body=1" media="all" rel="stylesheet" type="text/css" />
+	  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.core.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.blind.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.bounce.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.clip.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.drop.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.explode.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.fade.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.fold.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.highlight.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.pulsate.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.scale.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.shake.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.slide.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.effects.transfer.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.core.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.widget.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.accordion.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.position.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.autocomplete.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.button.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.datepicker.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.mouse.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.draggable.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.resizable.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.dialog.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.droppable.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.progressbar.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.selectable.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.slider.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.sortable.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.tabs.js?body=1" type="text/javascript"></script>
+	<script src="/assets/jquery.ui.all.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/transition.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/dropdown.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/button.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/carousel.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/collapse.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/alert.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/affix.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/typeahead.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/scrollspy.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/tab.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/modal.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/tooltip.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap/popover.js?body=1" type="text/javascript"></script>
+	<script src="/assets/twitter/bootstrap.js?body=1" type="text/javascript"></script>
 
-<a href="events">Link to App</a>
+
+	<script>
+		$(document).ready(function(){
+			if (document.cookie == "logged:true"){
+				window.location = "/events";
+			}
+		});
+
+		function login(){
+			console.log(document.cookie);
+			if($("#inputUser").val() == "jsmith" && $("#inputPass").val() == "password"){
+				document.cookie="logged:true";
+				window.location = "/events";
+			} else {
+				$("#error").html("<p style='color:red'>The username and password pair you provided is incorrect</p>");
+			}
+		}
+	</script>
+</head>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~Navigation~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<body>
+	<div class="navbar navbar-inverse">
+	  <div class="navbar-inner">
+	    <div class="container-fluid">
+	      <div class="nav-collapse collapse">
+	       
+	        <li class="brand">Occasioneer</li>
+	        
+	        <div class="nav">
+	          <li id="nav_home"><a href="/frontpage">Home</a></li>
+	          <li id="nav_templates"><a href="#">Templates</a></li>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="container">
+		<br />
+		<div class="row">
+
+			<form class="form-horizontal" action="javascript:login();">
+				<div id="error"></div>
+				<div class="control-group">
+					<label class="control-label" for="inputUser">Username:</label>
+					<div class="controls">
+						<input type="text" id="inputUser" placeholder="username" style="height:30px" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="inputPass">Password:</label>
+					<div class="controls">
+						<input type="password" id="inputPass" placeholder="password" style="height:30px" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn">Sign in</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+	<a href="events">Link to App</a>
+
+</body>
 
 </html>
