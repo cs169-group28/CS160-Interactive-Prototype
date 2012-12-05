@@ -1,6 +1,15 @@
 <script>
   //marks the events tab as active in navigation
   $('#nav_events').addClass("active");
+
+  //forces the modal to reload on every click,
+  //otherwise it is lazy and only loads content the first time
+  //you use it
+  $(document).ready(function(){
+    $('#showTaskModal').on('hidden', function() {
+        $(this).data('modal').$element.removeData();
+    })
+  });
 </script>
 <div class="container">
   <div class="hero-unit">
@@ -13,21 +22,21 @@
       <h1>Listing events</h1>
       <table class="table table-striped table-hover">
         <tr>
-          <th>ID</th>
           <th>Name</th>
           <th></th>
+          <th>Actions</th>
           <th></th>
         </tr>
 
       <% @events.each do |event| %>
         <tr>
-          <td><h4><%= event.id %></h4></td>
           <td><h4><%= event.name %></h4></td>
           <td><%= link_to 'Open', event, :class => "btn btn-success", :style => "float:right" %></td>
 
           <!-- Edit has been removed b/c user feedback
             <td style="width:10px"><%= link_to 'Edit', edit_event_path(event), :class => "btn btn-info", :style => "float:right" %></td>
           -->
+          <td style="width:10px"><%= link_to 'Edit', edit_event_path(event), :class =>"btn btn-warning", "data-toggle" => "modal", "data-target" => "#editEventModal" %></td>
           
           <td style="width:10px"><%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger", :style => "float:right" %></td>
         </tr>
@@ -46,6 +55,11 @@
       <%= link_to('New Event', new_event_path, :id => 'btn', :class => "btn btn-large btn-primary", "data-toggle" => "modal", "data-target" => "#newEventModal") %>
 
     <div id="newEventModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:-47%;margin-left:-15%%;height:90%;width:30%">
+      <div class="modal-body" style="max-height:100%;padding:0px 15px">
+      </div>
+    </div>
+
+    <div id="editEventModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:-47%;margin-left:-15%%;height:90%;width:30%">
       <div class="modal-body" style="max-height:100%;padding:0px 15px">
       </div>
     </div>

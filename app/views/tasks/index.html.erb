@@ -16,26 +16,24 @@
 
         <table class="table table-striped table-hover">
           <tr>
-            <th>id</th>
             <th>Name</th>
             <th></th>
+            <th>Actions</th>
             <th></th>
           </tr>
 
         <% @tasks.each do |task| %>
           <tr>
-            <td><%= task.id %></td>
             <td style="margin:10px">
               <a style="cursor:pointer;font-size:1.5em" data-toggle="collapse" data-target="#<%= task.id %>"><%= task.name %></a>
               <div id="<%= task.id %>" class="collapse">
                 <div class="well"><%= task.description%></div>
               </div>
             </td>
-            <td><%= link_to 'Show', event_task_path(task.event_id, task), "data-toggle" => "modal", "data-target" => "#showTaskModal", :class => "btn btn-success", :style => "float:right" %></td>
+            <td style="width:10px"><%= link_to 'Show', event_task_path(task.event_id, task), "data-toggle" => "modal", "data-target" => "#showTaskModal", :class => "btn btn-success"%></td>
 
-            <!-- Edit has been removed b/c of user feedback
-              <td style="width:10px"><%= link_to 'Edit', edit_event_task_path(task.event_id, task), :class => "btn btn-info", :style => "float:right" %></td> 
-            -->
+
+              <td style="width:10px"><%= link_to 'Edit', edit_event_task_path(task.event_id, task), :class => "btn btn-warning", "data-toggle" => "modal", "data-target" => "#editTaskModal" %></td> 
 
             <td style="width:10px"><%= link_to 'Delete', event_task_path(task.event_id, task), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger", :style => "float:right" %></td>
           </tr>
@@ -55,6 +53,11 @@
 </div>
 
 <div id="newTaskModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-body" style="max-height:80%; max-width:80%">
+  </div>
+</div>
+
+<div id="editTaskModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-body" style="max-height:80%; max-width:80%">
   </div>
 </div>
